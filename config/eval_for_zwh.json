@@ -1,0 +1,121 @@
+{
+  "steps": [
+    "data_generation",
+    "data_gen_more_positive",
+    "ada_i2i",
+    "llr_i2i",
+    "dhot",
+    "fasttext_train",
+    "recall",
+    "data_gen_for_rank",
+    "get_pretrain_emb",
+    "train_rank_model",
+    "pred_rank_model",
+    "mmr_metric",
+    "recall_ratio_metric"
+  ],
+  "data_generation": {
+    "enable": false,
+    "output_dir": "input_data"
+  },
+  "data_gen_more_positive": {
+    "enable": false,
+    "output_dir": "input_data"
+  },
+  "ada_i2i": {
+    "enable": false,
+    "output_dir": "recall_data"
+  },
+  "llr_i2i": {
+    "enable": false,
+    "output_dir": "recall_data"
+  },
+  "dhot": {
+    "enable": false,
+    "output_dir": "recall_data"
+  },
+  "fasttext_train": {
+    "enable": false,
+    "dim": 600,
+    "train_filename": "train_for_fasttext_eval.bin",
+    "predict_for_rank_filename": "train_for_rank_more_pos_eval.bin",
+    "predict_dst_filename": "train_for_rank_more_pos_add_fasttext_eval.bin",
+    "test_filename": "eval.csv",
+    "output_dir": "recall_data",
+    "has_train": true,
+    "model_filename": "fasttext_for_eval.model",
+    "num_for_train_sample": 10,
+    "num_for_eval_sample": 100
+  },
+  "recall": {
+    "enable": false,
+    "output_dir": "sort_data",
+    "ada_i2i": "adai2i_for_eval.csv",
+    "ada_i2i_txt": "",
+    "dhot": "dhot_for_eval.csv",
+    "fasttext": "fasttext_for_eval.csv",
+    "product_path": "products_train.csv",
+    "title_sim_path": "",
+    "input_filename": "eval.csv",
+    "dst_filename": "recall_result_for_eval.csv",
+    "params": {
+      "ada_i2i": {
+        "enable": true
+      },
+      "ada_i2i_txt": {
+        "enable": false
+      },
+      "llr_i2i": {
+        "enable": false
+      },
+      "dhot": {
+        "enable": true
+      },
+      "fasttext": {
+        "enable": true
+      },
+      "title_sim": {
+        "enable": false
+      }
+    }
+  },
+  "data_gen_for_rank": {
+    "enable": true,
+    "output_dir": "sort_data",
+    "input_train_filename": "train_for_rank_more_pos_add_fasttext_eval.bin",
+    "output_train_filename": "train_for_rank_eval.bin",
+    "input_test_filename": "recall_result_for_eval.csv",
+    "output_test_filename": "rank_prepare_for_eval.bin",
+    "word_dict_filename": "word_for_eval.dict",
+    "neg_sample_size": 20
+  },
+  "get_pretrain_emb": {
+    "enable": true,
+    "output_dir": "recall_data",
+    "word_dict_filename": "word_for_eval.dict",
+    "fasttext_model_name": "fasttext_for_eval.model",
+    "emb_path": "emb_for_eval.npy"
+  },
+  "train_rank_model": {
+    "enable": true,
+    "emb_size": 600,
+    "batch_size": 512,
+    "word_dict_filename": "word_for_eval.dict",
+    "output_dir": "rank_data",
+    "train_filename": "train_for_rank_eval.bin",
+    "emb_path": "emb_for_eval.npy",
+    "model_filename": "simple_nwp_for_eval.pth"
+  },
+  "pred_rank_model": {
+    "enable": true,
+    "model_name": "simple_nwp_for_eval.pth"
+  },
+  "mmr_metric": {
+    "enable": true,
+    "eval_filename": "sort_data/rank_result_for_eval.csv"
+  },
+  "recall_ratio_metric": {
+    "enable": true,
+    "eval_filename": "sort_data/rank_result_for_eval.csv"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "steps": [
+    "gen_submission"
+  ],
+  "data_generation": {
+    "enable": true,
+    "output_dir": "input_data"
+  },
+  "data_gen_for_fasttext": {
+    "enable": true,
+    "output_dir": "input_data"
+  },
+  "ada_i2i": {
+    "enable": true,
+    "output_dir": "recall_data"
+  },
+  "ada_i2i_txt": {
+    "enable": true,
+    "output_dir": "recall_data"
+  },
+  "llr_i2i": {
+    "enable": false,
+    "output_dir": "recall_data"
+  },
+  "dhot": {
+    "enable": true,
+    "output_dir": "recall_data"
+  },
+  "fasttext_train": {
+    "enable": true,
+    "dim": 64,
+    "output_dir": "recall_data"
+  },
+  "recall": {
+    "enable": true,
+    "output_dir": "sort_data"
+  },
+  "data_gen_for_rank": {
+    "enable": true,
+    "output_dir": "sort_data"
+  },
+  "get_pretrain_emb": {
+    "enable": true,
+    "output_dir": "recall_data"
+  },
+  "train_rank_model": {
+    "enable": true,
+    "emb_size": 64,
+    "output_dir": "rank_data"
+  },
+  "pred_rank_model": {
+    "enable": true,
+    "model_name": "simple_nwp_for_eval.pth"
+  },
+  "mmr_metric": {
+    "enable": true,
+    "eval_filename": "sort_data/recall_result_for_eval.csv"
+  },
+  "gen_submission": {
+    "enable": true,
+    "eval_filename": "sort_data/recall_result.csv"
+  },
+  "recall_ratio_metric": {
+    "enable": true,
+    "eval_filename": "sort_data/rank_result_for_eval.csv"
+  }
+}
